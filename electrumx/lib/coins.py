@@ -1256,38 +1256,47 @@ class NamecoinRegtest(NamecoinTestnet):
     TX_COUNT_HEIGHT = 1
     NAME_EXPIRATION = 30
 
-class Pepecoin(AuxPowMixin, Coin):
-    NAME = "Pepecoin"
-    SHORTNAME = "PEPE"
-    NET = "mainnet"
-    XPUB_VERBYTES = bytes.fromhex("02facafd")
-    XPRV_VERBYTES = bytes.fromhex("02fac398")
-    P2PKH_VERBYTE = bytes.fromhex("38")
-    P2SH_VERBYTES = (bytes.fromhex("16"),)
-    WIF_BYTE = bytes.fromhex("9e")
-    GENESIS_HASH = ('37981c0c48b8d48965376c8a42ece9a0'
-                    '838daadb93ff975cb091f57f8c2a5faa')
-    PEERS = [
-        'electrum.pepeblocks.com t50001 s50002',
-        'electrum.pepelum.site t50001 s50002',
-    ]
-    TX_COUNT = 121100
-    TX_COUNT_HEIGHT = 86777
-    TX_PER_BLOCK = 20
-    REORG_LIMIT = 2000
-    DESERIALIZER = lib_tx.DeserializerAuxPowSegWit
 
-class PepecoinTestnet(Pepecoin):
-    NAME = "Pepecoin"
-    SHORTNAME = "PEPETEST"
+class BBQCoin(AuxPowMixin, Coin):
+    NAME = "BBQCoin"
+    SHORTNAME = "BQC"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("0487b01f")  # Extended Public Key Prefix
+    XPRV_VERBYTES = bytes.fromhex("0487afe5")  # Extended Private Key Prefix
+    P2PKH_VERBYTE = bytes.fromhex("55")       # Pubkey Hash Prefix (0x55 -> 85)
+    P2SH_VERBYTES = (bytes.fromhex("06"),)    # Script Hash Prefix (0x06 -> 6)
+    WIF_BYTE = bytes.fromhex("d5")            # WIF Byte Prefix (0xD5 -> 213)
+    GENESIS_HASH = ('32e21aeb3780622102419fbda3a5f9d6'
+                    'c8d81d52e3d1b6cdad8a8e92f50415ec')        # Genesis Block Hash
+    PEERS = [
+        'seed01.bbqcoin.link t50001 s50002',
+        'seed02.bbqcoin.link t50001 s50002',
+        'seed02.bbqcoin.link t50001 s50002',
+    ]
+    TX_COUNT = 625480                         # Total Transactions (adjust if needed)
+    TX_COUNT_HEIGHT = 529500                  # Block Height for Transaction Count
+    TX_PER_BLOCK = 1                          # Transactions Per Block (estimate)
+    REORG_LIMIT = 2000                        # Reorganization Limit
+    DESERIALIZER = lib_tx.DeserializerAuxPowSegWit  # Deserializer for AuxPow and SegWit
+
+
+class BBQCoinTestnet(BBQCoin):
+    NAME = "BBQCoin"
+    SHORTNAME = "TESTBQC"
     NET = "testnet"
-    XPUB_VERBYTES = bytes.fromhex("043587cf")
-    XPRV_VERBYTES = bytes.fromhex("04358394")
-    P2PKH_VERBYTE = bytes.fromhex("71")
-    P2SH_VERBYTES = (bytes.fromhex("c4"),)
-    WIF_BYTE = bytes.fromhex("f1")
-    GENESIS_HASH = ('f9f4ea4ae7f6ea4c55040ede2019ba0a'
-                    '53e262f46ec9bce3dcda2cb11f96fc52')
+    XPUB_VERBYTES = bytes.fromhex("02facafd")  # Extended Public Key Prefix
+    XPRV_VERBYTES = bytes.fromhex("02fac398")  # Extended Private Key Prefix
+    P2PKH_VERBYTE = bytes.fromhex("19")       # Pubkey Hash Prefix (0x19 -> 25)
+    P2SH_VERBYTES = (bytes.fromhex("4c"),)    # Script Hash Prefix (0x4C -> 76)
+    WIF_BYTE = bytes.fromhex("99")            # WIF Byte Prefix (0x99 -> 153)
+    GENESIS_HASH = ('7c517f40f1bb4d60c23e8fe6ea57ec2e'
+                    '285ff076aab372e0e801640329d6f9d5')  # Testnet Genesis Block Hash
+    PEERS = [
+        'testnet.seed01.bbqcoin.link t50001 s50002',
+        'testnet.seed02.bbqcoin.link t50001 s50002',
+        'testnet.seed02.bbqcoin.link t50001 s50002',
+    ]
+
 
 class Dogecoin(AuxPowMixin, Coin):
     NAME = "Dogecoin"
